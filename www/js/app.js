@@ -43,4 +43,24 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
     }
   });
 
+  $scope.showHomeTimeline = function() {
+    $twitterApi.getHomeTimeline().then(function(data) {
+      $scope.home_timeline = data;
+    });
+  };
+
+  $scope.submitTweet = function() {
+    $twitterApi.postStatusUpdate($scope.tweet.message).then(function(result) {
+      $scope.showHomeTimeline();
+    });
+  }
+
+  $scope.doRefresh = function() {
+    $scope.showHomeTimeline();
+    $scope.$broadcast('scroll.refreshComplete');
+  };
+
+  $scope.correctTimestring = function(string) {
+    return new Date(Date.parse(string));
+  }
 });
