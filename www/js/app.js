@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
+angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -18,49 +18,37 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   });
 })
 
-.controller('AppCtrl', function($scope, $ionicPlatform, $twitterApi, $cordovaOauth) {
-  var twitterKey = 'STORAGE.TWITTER.KEY';
-  var clientId = 'daLhFOdYvq0Jb4Uivdg5IL1hf';
-  var clientSecret = 'N28nLRPUjih4iWhuO1zaw6RbgtcIJ9aOVKPeDHS5jIw0CRLZa7';
-  var myToken = '';
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
 
-  $scope.tweet = {};
+  $stateProvider
 
-  $ionicPlatform.ready(function() {
-    myToken = JSON.parse(window.localStorage.getItem(twitterKey));
-    if (myToken === '' || myToken === null) {
-      $cordovaOauth.twitter(clientId, clientSecret).then(function (success) {
-        myToken = success;
-        window.localStorage.setItem(twitterKey, JSON.stringify(success));
-        $twitterApi.configure(clientId, clientSecret, success);
-        $scope.showHomeTimeline();
-      }, function(error) {
-        console.log(error);
-      });
-    } else {
-      $twitterApi.configure(clientId, clientSecret, myToken);
-      $scope.showHomeTimeline();
+  .state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
+  })
+
+.state('tab.twitter', {
+    url: '/twitter',
+    views: {
+      'tab-twitter': {
+        templateUrl: 'templates/tab-twitter.html',
+        controller: 'AppCtrl'
+      }
+    }
+  })
+
+.state('tab.nasa', {
+    url: '/nasa',
+    views: {
+      'tab-nasa': {
+        templateUrl: 'templates/tab-nasa.html',
+        controller: 'AppCtrl'
+      }
     }
   });
 
-  $scope.showHomeTimeline = function() {
-    $twitterApi.getHomeTimeline().then(function(data) {
-      $scope.home_timeline = data;
-    });
-  };
-
-  $scope.submitTweet = function() {
-    $twitterApi.postStatusUpdate($scope.tweet.message).then(function(result) {
-      $scope.showHomeTimeline();
-    });
-  }
-
-  $scope.doRefresh = function() {
-    $scope.showHomeTimeline();
-    $scope.$broadcast('scroll.refreshComplete');
-  };
-
-  $scope.correctTimestring = function(string) {
-    return new Date(Date.parse(string));
-  };
+$urlRouterProvider.otherwise('/twitter');
 });
+
