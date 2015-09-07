@@ -18,13 +18,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   });
 })
 
-.controller('AppCtrl', function($scope, $ionicPlatform, $twitterApi, $cordovaOauth) {
+.controller('AppCtrl', function($scope, $ionicPlatform, $twitterApi, $cordovaOauth, $http) {
   var twitterKey = 'STORAGE.TWITTER.KEY';
   var clientId = 'daLhFOdYvq0Jb4Uivdg5IL1hf';
   var clientSecret = 'N28nLRPUjih4iWhuO1zaw6RbgtcIJ9aOVKPeDHS5jIw0CRLZa7';
   var myToken = '';
+  var POTDApi = 'https://api.nasa.gov/planetary/apod?api_key=OKsZatPeSQtXGUtJ9DbrB2uxeGh6NQVqFZPCZVB2';
+  
 
   $scope.tweet = {};
+
+  $scope.nasa = {};
 
   $ionicPlatform.ready(function() {
     myToken = JSON.parse(window.localStorage.getItem(twitterKey));
@@ -33,13 +37,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
         myToken = success;
         window.localStorage.setItem(twitterKey, JSON.stringify(success));
         $twitterApi.configure(clientId, clientSecret, success);
-        $scope.showHomeTimeline();
+        $scope.getPOTD();
       }, function(error) {
         console.log(error);
       });
     } else {
       $twitterApi.configure(clientId, clientSecret, myToken);
-      $scope.showHomeTimeline();
+      $scope.getPOTD();
     }
   });
 
@@ -62,5 +66,20 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
 
   $scope.correctTimestring = function(string) {
     return new Date(Date.parse(string));
-  }
+  };
+
+  $scope.getPOTD = function() {
+    $http.get(POTDApi).
+    then(function(success) {
+    // this callback will be called asynchronously
+    // when the response is available
+      console.log("GETPOTD");
+      $scope.nasa = success;
+
+  }, function(error) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    console.log(error);
+  });
+  };
 });
