@@ -48,6 +48,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
 
-$urlRouterProvider.otherwise('/twitter');
+$urlRouterProvider.otherwise('/tab');
 });
 
