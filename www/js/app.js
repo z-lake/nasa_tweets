@@ -19,7 +19,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
 
   $stateProvider
 
@@ -32,8 +31,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .state('tab.twitter', {
     url: '/twitter',
     views: {
-      'tab-twitter': {
-        templateUrl: 'templates/tab-twitter.html',
+      'tabs-twitter': {
+        templateUrl: 'templates/tabs-twitter.html',
         controller: 'AppCtrl'
       }
     }
@@ -42,8 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .state('tab.nasa', {
     url: '/nasa',
     views: {
-      'tab-nasa': {
-        templateUrl: 'templates/tab-nasa.html',
+      'tabs-nasa': {
+        templateUrl: 'templates/tabs-nasa.html',
         controller: 'AppCtrl'
       }
     }
