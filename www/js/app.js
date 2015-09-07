@@ -62,5 +62,5 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
 
   $scope.correctTimestring = function(string) {
     return new Date(Date.parse(string));
-  }
+  };
 });
