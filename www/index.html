@@ -43,13 +43,13 @@
 
           <div class="list card">
             <div class="item item-image">
-              <img ng-src="{{nasa.url}}">
+              <img ng-src="{{nasa.url}}" ng-model="nasa.url" >
             </div>
 
             <label class="item item-input">
               <span class="input-label">Date</span>
               <!-- date must be between Jun 16, 1996 and Sep 08, 2015 -->
-                <input type="date" ng-model="nasa.date" min="1996-06-15" ng-max="{{$scope.today}}">
+                <input type="date" ng-model="nasa.date" >
               </label>
               <button class="button button-small" ng-click="getPOTDByDate()">
                 Get by date

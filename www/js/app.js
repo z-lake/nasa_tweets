@@ -92,15 +92,26 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   };
 
   $scope.getPOTDByDate = function() {
-    var uglyDate = $scope.nasa.date.toString();
-    console.log(uglyDate);
-    var dateArray = uglyDate.split(" ");
-    console.log(dateArray);
+    var day = $scope.nasa.date.getDate();
+    var month = $scope.nasa.date.getMonth() + 1;
+    var year = $scope.nasa.date.getFullYear();
+    var newDate;
+    if(day < 10) {
+      day = '0'+ day;
+    }
+    if(month < 10) {
+      month = '0' + month;
+    }
+      newDate = year+'-'+month+'-'+day;
+      console.log(newDate);
 
-    $http.get(POTDApi + $scope.nasa.date)
+      // ajax request for new photo url
+    $http.get(POTDApi + '&date=' + newDate)
     .then( function(success) {
       console.log('get by date');
+      console.log(success.data);
       $scope.nasa = success.data;
+      console.log($scope.nasa);
     }, function(error) {
       console.log(error);
     });
