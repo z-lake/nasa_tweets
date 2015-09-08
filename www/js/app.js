@@ -92,7 +92,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   };
 
   $scope.getPOTDByDate = function() {
-    console.log($scope.nasa.date);
+    var uglyDate = $scope.nasa.date.toString();
+    console.log(uglyDate);
+    var dateArray = uglyDate.split(" ");
+    console.log(dateArray);
+
     $http.get(POTDApi + $scope.nasa.date)
     .then( function(success) {
       console.log('get by date');
