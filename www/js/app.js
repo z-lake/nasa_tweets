@@ -24,7 +24,19 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   var clientSecret = 'N28nLRPUjih4iWhuO1zaw6RbgtcIJ9aOVKPeDHS5jIw0CRLZa7';
   var myToken = '';
   var POTDApi = 'https://api.nasa.gov/planetary/apod?api_key=OKsZatPeSQtXGUtJ9DbrB2uxeGh6NQVqFZPCZVB2';
-  
+
+  // format today's date
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  if(dd < 10) {
+    dd = '0'+ dd;
+  }
+  if(mm < 10) {
+    mm = '0' + mm;
+  }
+  $scope.today = mm+'-'+dd+'-'+yyyy;
 
   $scope.tweet = {};
 
@@ -40,6 +52,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
         $scope.getPOTD();
       }, function(error) {
         console.log(error);
+        $scope.getPOTD();
       });
     } else {
       $twitterApi.configure(clientId, clientSecret, myToken);
@@ -68,18 +81,25 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
     return new Date(Date.parse(string));
   };
 
+  // default request to POTD api (today's date)
   $scope.getPOTD = function() {
     $http.get(POTDApi).
     then(function(success) {
-    // this callback will be called asynchronously
-    // when the response is available
-      console.log("GETPOTD");
-      $scope.nasa = success;
-
+      $scope.nasa = success.data;
   }, function(error) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
     console.log(error);
   });
   };
+
+  $scope.getPOTDByDate = function() {
+    console.log($scope.nasa.date);
+    $http.get(POTDApi + $scope.nasa.date)
+    .then( function(success) {
+      console.log('get by date');
+      $scope.nasa = success.data;
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
 });
