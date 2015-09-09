@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngTwitter'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'ngTwitter'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
