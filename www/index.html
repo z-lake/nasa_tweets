@@ -42,19 +42,25 @@
           </div>
 
           <div class="list card">
+          <div class="item item-divider">
+             {{nasa.title}}
+          </div>
             <div class="item item-image">
-              <img ng-src="{{nasa.url}}" ng-model="nasa.url" >
+              <img ng-src="{{nasa.url}}" ng-model="nasa" >
             </div>
-
+            <div class="item item-text-wrap">
+             {{nasa.explanation}}
+            </div>
+          </div>
             <label class="item item-input">
               <span class="input-label">Date</span>
               <!-- date must be between Jun 16, 1996 and Sep 08, 2015 -->
                 <input type="date" ng-model="nasa.date" >
-              </label>
-              <button class="button button-small" ng-click="getPOTDByDate()">
+                </label>
+                <button class="button button-large" ng-click="getPOTDByDate()">
                 Get by date
-              </button>
-             </div>
+                </button>
+             
       </ion-content>
     </ion-pane>
   </body>
