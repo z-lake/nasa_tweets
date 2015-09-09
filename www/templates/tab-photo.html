@@ -1,38 +1,42 @@
-  <ion-header-bar class="bar-positive">
-        <h1 class="title">Tweet NASA's Photo of The Day</h1>
-      </ion-header-bar>
-  <ion-content class="has-header padding">
-        
-       <label class="item item-input">
-              <span class="input-label">Date</span>
-              <!-- date must be between Jun 16, 1996 and Sep 08, 2015 -->
-                <input type="date" ng-model="nasa.date" >
-                </label>
-                <button class="button button-large" ng-click="getPOTDByDate()">
-                Get by date
-                </button>
-                
-          <div class="list card">
-          <div class="item item-divider">
-             {{nasa.title}}
-          </div>
-            <div class="item item-image">
-              <img ng-src="{{nasa.url}}" ng-model="nasa" >
-            </div>
-            <div class="item item-text-wrap">
-             {{nasa.explanation}}
-            </div>
-          </div>
-           
-             
-             <div class="list">
-          <div class="item item-input-insert">
-            <label class="item-input-wrapper">
-              <input type="text" placeholder="My tweet..." ng-model="tweet.message" ng-maxlength="140">
-              </label>
-              <button class="button button-small" ng-click="submitTweet()">
-                Tweet
-              </button>
-            </div>
-          </div>
-      </ion-content>
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Tweet NASA's Photo of The Day</h1>
+</ion-header-bar>
+<ion-content class="has-header padding">
+  <div class="row">
+    <label class="item item-input col col-75">
+      <span class="input-label">Date</span>
+      <!-- date must be between Jun 16, 1996 and Sep 08, 2015 -->
+      <input type="date" ng-model="nasa.date" >
+    </label>
+    <button class="button col" ng-click="getPOTDByDate()">
+    Get by date
+    </button>
+  </div>
+
+  <div class="list card">
+    <div class="item item-divider">
+      {{nasa.title}}
+    </div>
+    <div class="item item-image">
+      <img ng-src="{{nasa.url}}" ng-model="nasa" >
+    </div>
+    <div class="item item-text-wrap">
+      {{nasa.explanation}}
+    </div>
+  </div>
+
+
+  <div class="list">
+    <div class="item item-input-insert">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="My tweet..." ng-model="tweet.message" ng-maxlength="140">
+      </label>
+      <button class="button button-small" ng-click="submitTweet()">
+      Tweet
+      </button>
+    </div>
+  </div>
+  <button class="button button-small" ng-click="logOut()">
+  Log Out
+  </button>
+</ion-content>
