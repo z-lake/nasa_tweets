@@ -26,17 +26,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
   var POTDApi = 'https://api.nasa.gov/planetary/apod?api_key=OKsZatPeSQtXGUtJ9DbrB2uxeGh6NQVqFZPCZVB2';
 
   // format today's date
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth()+1;
-  var yyyy = today.getFullYear();
-  if(dd < 10) {
-    dd = '0'+ dd;
-  }
-  if(mm < 10) {
-    mm = '0' + mm;
-  }
-  $scope.today = mm+'-'+dd+'-'+yyyy;
+  // var today = new Date();
+  // var dd = today.getDate();
+  // var mm = today.getMonth()+1;
+  // var yyyy = today.getFullYear();
+  // if(dd < 10) {
+  //   dd = '0'+ dd;
+  // }
+  // if(mm < 10) {
+  //   mm = '0' + mm;
+  // }
+  // $scope.today = mm+'-'+dd+'-'+yyyy;
 
   $scope.tweet = {};
 
