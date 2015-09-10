@@ -21,8 +21,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngTwitter'])
 
 .controller('AppCtrl', function($scope, $ionicPlatform, $twitterApi, $cordovaOauth, $http) {
     var twitterKey = 'STORAGE.TWITTER.KEY';
-    var clientId = 'daLhFOdYvq0Jb4Uivdg5IL1hf';
-    var clientSecret = 'N28nLRPUjih4iWhuO1zaw6RbgtcIJ9aOVKPeDHS5jIw0CRLZa7';
+    var clientId = 'sJmDHSoYlRuoCT40f3lCdJj5c';
+    var clientSecret = 'rwxxczkdE5rKWBGJUQTaf75qjeHvoMM4TRWMGCL8zTFpvzZ4hP';
     var myToken = '';
     var POTDApi = 'https://api.nasa.gov/planetary/apod?api_key=OKsZatPeSQtXGUtJ9DbrB2uxeGh6NQVqFZPCZVB2';
 
