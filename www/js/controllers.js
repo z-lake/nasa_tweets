@@ -1,9 +1,9 @@
 angular.module('starter.controllers', ['ngCordova', 'ngTwitter'])
 
-.controller('AppCtrl', function($scope, $ionicPlatform, $twitterApi, $cordovaOauth) {
+.controller('AppCtrl', function($scope, $location, $ionicPlatform, $twitterApi, $cordovaOauth) {
   var twitterKey = 'STORAGE.TWITTER.KEY';
-  var clientId = 'daLhFOdYvq0Jb4Uivdg5IL1hf';
-  var clientSecret = 'N28nLRPUjih4iWhuO1zaw6RbgtcIJ9aOVKPeDHS5jIw0CRLZa7';
+  var clientId = 'sJmDHSoYlRuoCT40f3lCdJj5c';
+  var clientSecret = 'rwxxczkdE5rKWBGJUQTaf75qjeHvoMM4TRWMGCL8zTFpvzZ4hP';
   var myToken = '';
 
   $scope.tweet = {};
@@ -15,6 +15,7 @@ angular.module('starter.controllers', ['ngCordova', 'ngTwitter'])
         myToken = success;
         window.localStorage.setItem(twitterKey, JSON.stringify(success));
         $twitterApi.configure(clientId, clientSecret, success);
+        $location.path('/twitter');
         $scope.showHomeTimeline();
       }, function(error) {
         console.log(error);
